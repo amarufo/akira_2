@@ -35,9 +35,9 @@
 <div class="container-fluid mt-3">
 
   <!-- ========== FILA 1 – TRES COLUMNAS ========== -->
-  <div class="row g-3">
+  <div class="row">
     <!-- ───────────── Columna 1 → Información y tabla ───────────── -->
-    <div class="col-lg-4">
+    <div class="col-4">
       <div class="box">
         <h6 class="bg-dark text-white text-center py-1 mb-2">CURSO</h6>
         <p class="bg-secondary text-white text-center mb-2" style="font-size:.8vw;">
@@ -85,7 +85,7 @@
     </div>
 
     <!-- ───────────── Columna 2 → Selector, gráfico, carrusel 1 ───────────── -->
-    <div class="col-lg-4">
+    <div class="col-4">
       <!-- selector -->
       <select id="selPob" class="form-select mb-2">
         <option value="poblacion_total">Población total</option>
@@ -99,21 +99,25 @@
       <iframe id="iframePob" src="plots/poblacion_total.html" class="h25"></iframe>
 
       <!-- Carrusel 1 (fotos de oferta) -->
-      <img id="fotoOferta" src="assets/oferta1.png" class="img-fluid border mt-2"
-           style="height:33vh; object-fit:contain;">
       <button id="btnNextOferta" class="btn btn-dark w-100 btn-sm mt-1">
         Siguiente foto (oferta)
       </button>
+      <img id="fotoOferta" src="assets/oferta1.png" class="img-fluid border mt-2"
+           style="height:33vh; object-fit:contain;">
+      
     </div>
 
     <!-- ───────────── Columna 3 → Carrusel 2 + mapa ───────────── -->
-    <div class="col-lg-4">
+    <div class="col-4">
       <!-- Carrusel 2 (diagnóstico / teoría) -->
-      <img id="fotoDiag" src="assets/pf1.jpg" class="img-fluid border mb-1"
-           style="height:33vh; object-fit:contain;">
-      <button id="btnNextDiag" class="btn btn-dark w-100 btn-sm mb-3">
-        Siguiente foto&nbsp;(diag.)
-      </button>
+       <div class="text-center">
+        <button id="btnNextDiag" class="btn btn-dark w-100 btn-sm mb-3">
+            Siguiente foto&nbsp;(diag.)
+        </button>
+        <img id="fotoDiag" src="assets/pob_total.png" class="img-fluid border mb-1"
+            style="height:33vh; object-fit:contain;">
+        </div>
+      
 
       <!-- mapa isócrona -->
       <iframe src="assets/isochrone_map.html" class="h33"></iframe>
@@ -122,10 +126,10 @@
 
   <!-- ========== FILA 2 – DONAS HORIZONTALES ========== -->
   <div class="row g-3 justify-content-center my-3">
-    <div class="col-6 col-md-3"><iframe src="plots/donut_diseno.html"  class="h17"></iframe></div>
-    <div class="col-6 col-md-3"><iframe src="plots/donut_actual.html"  class="h17"></iframe></div>
-    <div class="col-6 col-md-3"><iframe src="plots/donut_optimo.html"  class="h17"></iframe></div>
-    <div class="col-6 col-md-3"><iframe src="plots/donut_final.html"   class="h17"></iframe></div>
+    <div class="col-6 col-md-2"><iframe src="plots/donut_diseno.html"  class="h17"></iframe></div>
+    <div class="col-6 col-md-2"><iframe src="plots/donut_actual.html"  class="h17"></iframe></div>
+    <div class="col-6 col-md-2"><iframe src="plots/donut_optimo.html"  class="h17"></iframe></div>
+    <div class="col-6 col-md-2"><iframe src="plots/donut_final.html"   class="h17"></iframe></div>
   </div>
 
   <!-- ========== FILA 3 – BRECHA (100 %) ========== -->
@@ -175,7 +179,7 @@ document.getElementById('btnNextOferta').addEventListener('click', ()=>{
 /* -------- Carrusel 2 (diagnóstico) -------- */
 const fotosDiag = [
   "assets/pob_total.png","assets/pob_ref.png","assets/pob_pot.png",
-  "assets/pob_e_sp.png","assets/pob_e_cp.png","assets/4.jpg"
+  "assets/pob_e_sp.png","assets/pob_e_cp.png"
 ];
 let iDiag = 0;
 document.getElementById('btnNextDiag').addEventListener('click', ()=>{
