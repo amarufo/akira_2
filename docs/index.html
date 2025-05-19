@@ -5,50 +5,33 @@
 <title>Dashboard Educativo — Versión estática</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap 5 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-  body            { font-family: Arial, sans-serif; }
-  header          { background:#000; color:#fff; padding:.6rem 1rem; text-align:center; font-weight:bold; }
-  .info-box       { border:1px solid #000; padding:.6rem; margin-bottom:1rem; }
+  body          { font-family: Arial, sans-serif; }
+  header        { background:#000; color:#fff; padding:.6rem 1rem; text-align:center; font-weight:bold; }
+  .box          { border:1px solid #000; padding:.6rem; margin-bottom:1rem; }
   .table-sm td,
-  .table-sm th    { font-size:.66vw; padding:.2rem .3rem; }
-  .donuts iframe  { height:17vh; border:none; }
-  .chart-25       { height:24vh; border:none; }
-  .chart-33       { height:33vh; border:none; }
-  .chart-60       { height:60vh; border:none; }
-  .chart-full     { height:90vh; border:none; }
-  select          { font-size:.9rem; }
-  #nav a          { cursor:pointer; }
+  .table-sm th  { font-size:.70vw; padding:.2rem .3rem; }
+  iframe        { border:none; }
+  .h25          { height:25vh; }  /* barras población  */
+  .h17          { height:17vh; }  /* donas            */
+  .h33          { height:33vh; }  /* mapa / foto      */
+  .h60          { height:60vh; }  /* brecha           */
+  .h90          { height:90vh; }  /* monte-carlo      */
+  select        { font-size:.9rem; }
 </style>
 </head>
 <body>
 
-<header id="top">DASHBOARD DE CÁLCULO DE LA OFERTA, DEMANDA Y BRECHAS DE UN PROYECTO DE INVERSIÓN</header>
+<header>DASHBOARD DE CÁLCULO DE LA OFERTA, DEMANDA Y BRECHAS DE UN PROYECTO DE INVERSIÓN</header>
 
-<!-- Barra de navegación ancla -->
-<!-- 
-<nav id="nav" class="navbar navbar-expand-sm bg-light sticky-top shadow-sm">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="#top">Inicio</a>
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link" href="#general">Presentación General</a></li>
-        <li class="nav-item"><a class="nav-link" href="#montecarlo">Monte Carlo</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
--->
-
-<!-- =============== SECCIÓN GENERAL =============== -->
-<section id="general" class="container-fluid mt-3">
+<!-- FILA PRINCIPAL = 3 COLUMNAS -->
+<div class="container-fluid mt-3">
   <div class="row">
-    <!-- COLUMNA IZQUIERDA (info) -->
+    <!-- 1) COLUMNA IZQUIERDA (info) -->
     <div class="col-lg-4">
-      <!-- Datos iniciales -->
-      <div class="info-box">
+      <div class="box">
         <h6 class="bg-dark text-white text-center py-1 mb-2">CURSO</h6>
         <p class="bg-secondary text-white text-center mb-2" style="font-size:.8vw;">
           Taller de proyectos II — Maestría en Sc. Proyectos de Inversión
@@ -62,22 +45,11 @@
         <p class="mb-1">I.E. secundaria: <b>Akira Kato</b></p>
         <p class="mb-1">Ubicación: <b>Lima – Ate</b></p>
         <p>Fuentes: BD personal, INEI, SIADEG</p>
-
-        <h6 class="bg-dark text-white text-center py-1 mb-1">Unidad de servicio</h6>
-        <p class="mb-1">Estudiantes atendidos anualmente</p>
-        <p>MINEDU — Servicio de Educación Secundaria</p>
-
-        <h6 class="bg-dark text-white text-center py-1 mb-1">Brechas</h6>
-        <p class="mb-1">Cobertura: % no matriculados vs. demanda potencial</p>
-        <p class="mb-0">Calidad: % de locales con capacidad inadecuada</p>
       </div>
 
-      <!-- Tabla AI / I.E. (versión simplificada) -->
-      <div class="info-box">
+      <div class="box">
         <table class="table table-bordered table-sm mb-0">
-          <thead class="table-primary text-center">
-            <tr><th colspan="2">Área de influencia</th></tr>
-          </thead>
+          <thead class="table-primary text-center"><tr><th colspan="2">Área de influencia</th></tr></thead>
           <tbody>
             <tr><td>A.I. (km²)</td><td>10 589</td></tr>
             <tr><td>Colegios (pub+priv)</td><td>37</td></tr>
@@ -86,9 +58,7 @@
             <tr><td>Estudiantes A.I.</td><td>6 867</td></tr>
             <tr><td>Estudiantes en públicos</td><td>3 190</td></tr>
           </tbody>
-          <thead class="table-primary text-center">
-            <tr><th colspan="2">Datos de la I.E.</th></tr>
-          </thead>
+          <thead class="table-primary text-center"><tr><th colspan="2">Datos de la I.E.</th></tr></thead>
           <tbody>
             <tr><td>Estudiantes (2024)</td><td>671</td></tr>
             <tr><td>Docentes (2024)</td><td>34</td></tr>
@@ -102,79 +72,66 @@
       </div>
     </div>
 
-    <!-- COLUMNA DERECHA (gráficos / imágenes) -->
-    <div class="col-lg-8">
-      <!-- primera fila -->
-      <div class="row">
-        <div class="col-md-7">
-          <!-- Selector & gráfico población -->
-          <select id="selPob" class="form-select mb-2">
-            <option value="poblacion_total">Población total</option>
-            <option value="poblacion_ref">Población demandada referencial</option>
-            <option value="poblacion_pot">Población demandada potencial</option>
-            <option value="poblacion_ef_sin">Población efectiva sin proyecto</option>
-            <option value="poblacion_ef_con">Población efectiva con proyecto</option>
-          </select>
-          <iframe id="iframePob" src="plots/poblacion_total.html" class="chart-25 w-100"></iframe>
-        </div>
-        <div class="col-md-5 donuts d-flex flex-column gap-1">
-          <iframe src="plots/donut_diseno.html"></iframe>
-          <iframe src="plots/donut_actual.html"></iframe>
-          <iframe src="plots/donut_optimo.html"></iframe>
-          <iframe src="plots/donut_final.html"></iframe>
-        </div>
-      </div>
+    <!-- 2) COLUMNA CENTRAL (población + donas) -->
+    <div class="col-lg-4">
+      <select id="selPob" class="form-select mb-2">
+        <option value="poblacion_total">Población total</option>
+        <option value="poblacion_ref">Población demandada referencial</option>
+        <option value="poblacion_pot">Población demandada potencial</option>
+        <option value="poblacion_ef_sin">Población efectiva sin proyecto</option>
+        <option value="poblacion_ef_con">Población efectiva con proyecto</option>
+      </select>
+      <iframe id="iframePob" src="plots/poblacion_total.html" class="h25 w-100"></iframe>
 
-      <!-- segunda fila -->
-      <div class="row mt-2">
-        <div class="col-md-6">
-          <!-- carrusel sencillo -->
-          <button id="btnNext" class="btn btn-dark w-100 btn-sm mt-1">Siguiente foto</button>
-          <img id="fotoOferta" src="assets/oferta1.png" class="img-fluid border" style="height:33vh; object-fit:contain;">
-        </div>
-        <div class="col-md-6">
-          <!-- mapa isócrona -->
-          <iframe src="assets/isochrone_map.html" class="chart-33 w-100"></iframe>
-        </div>
+      <div class="d-flex flex-column gap-1 mt-2">
+        <iframe src="plots/donut_diseno.html"  class="h17 w-100"></iframe>
+        <iframe src="plots/donut_actual.html"  class="h17 w-100"></iframe>
+        <iframe src="plots/donut_optimo.html"  class="h17 w-100"></iframe>
+        <iframe src="plots/donut_final.html"   class="h17 w-100"></iframe>
       </div>
+    </div>
 
-      <!-- tercera fila -->
-      
+    <!-- 3) COLUMNA DERECHA (foto + mapa) -->
+    <div class="col-lg-4">
+      <img id="fotoOferta" src="assets/oferta1.png" class="img-fluid border mb-1" style="height:33vh; object-fit:contain;">
+      <button id="btnNext" class="btn btn-dark w-100 btn-sm mb-3">Siguiente foto</button>
+
+      <iframe src="assets/isochrone_map.html" class="h33 w-100"></iframe>
     </div>
   </div>
-</section>
 
-<!-- =============== BRECHA =============== -->
-<section id="brecha" class="container-fluid mt-4">
-  <div class="row mt-2">
-        <div class="col-12">
-          <h6 class="bg-dark text-white text-center py-1 mb-1">Evolución de la brecha</h6>
-          <iframe src="plots/brecha.html" class="chart-60 w-100"></iframe>
-        </div>
-      </div>
-</section>
+  <!-- 4) FILA BRECHA -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <h6 class="bg-dark text-white text-center py-1 mb-1">Evolución de la brecha</h6>
+      <iframe src="plots/brecha.html" class="h60 w-100"></iframe>
+    </div>
+  </div>
 
-<!-- =============== MONTECARLO =============== -->
-<section id="montecarlo" class="container-fluid mt-4">
-  <h4 class="text-center fw-bold mb-2">Simulación Monte Carlo de Demanda</h4>
-  <iframe src="plots/montecarlo.html" class="chart-full w-100"></iframe>
-</section>
+  <!-- 5) FILA MONTE-CARLO -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <h4 class="text-center fw-bold mb-2">Simulación Monte Carlo de Demanda</h4>
+      <iframe src="plots/montecarlo.html" class="h90 w-100"></iframe>
+    </div>
+  </div>
+</div>
 
-<!-- JS para selector, carrusel y desplazamiento suave -->
+<!-- JS: selector + carrusel -->
 <script>
-  // --- cambia gráfico de población ---
+  // Selector de población
   const mapPob = {
-    poblacion_total:   "plots/poblacion_total.html",
-    poblacion_ref:     "plots/poblacion_pob_ref.html",
-    poblacion_pot:     "plots/poblacion_pob_pote.html",
-    poblacion_ef_sin:  "plots/poblacion_pob_e_sp.html",
-    poblacion_ef_con:  "plots/poblacion_pob_e_cp.html"
+    poblacion_total  : "plots/poblacion_total.html",
+    poblacion_ref    : "plots/poblacion_pob_ref.html",
+    poblacion_pot    : "plots/poblacion_pob_pote.html",
+    poblacion_ef_sin : "plots/poblacion_pob_e_sp.html",
+    poblacion_ef_con : "plots/poblacion_pob_e_cp.html"
   };
   document.getElementById('selPob').addEventListener('change', e=>{
     document.getElementById('iframePob').src = mapPob[e.target.value];
   });
 
-  // --- carrusel de fotos oferta ---
+  // Carrusel de fotos
   const fotos = [
     "assets/pf1.jpg","assets/pf2.jpg","assets/pf3.jpg","assets/pf4.jpg",
     "assets/pf5.jpg","assets/pf6.jpg","assets/pf7.jpg","assets/pf8.jpg",
@@ -182,17 +139,8 @@
   ];
   let idx = 0;
   document.getElementById('btnNext').addEventListener('click', ()=>{
-    idx = (idx+1)%fotos.length;
+    idx = (idx+1) % fotos.length;
     document.getElementById('fotoOferta').src = fotos[idx];
-  });
-
-  // --- desplazamiento suave (opcional) ---
-  document.querySelectorAll('#nav a').forEach(a=>{
-    a.addEventListener('click', ev=>{
-      ev.preventDefault();
-      document.querySelector(ev.target.getAttribute('href'))
-              .scrollIntoView({behavior:'smooth'});
-    });
   });
 </script>
 
