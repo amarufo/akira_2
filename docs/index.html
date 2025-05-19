@@ -158,10 +158,10 @@
   // --- cambia gráfico de población ---
   const mapPob = {
     poblacion_total:   "plots/poblacion_total.html",
-    poblacion_ref:     "plots/poblacion_ref.html",
-    poblacion_pot:     "plots/poblacion_pot.html",
-    poblacion_ef_sin:  "plots/poblacion_ef_sin.html",
-    poblacion_ef_con:  "plots/poblacion_ef_con.html"
+    poblacion_ref:     "plots/poblacion_pob_ref.html",
+    poblacion_pot:     "plots/poblacion_pob_pote.html",
+    poblacion_ef_sin:  "plots/poblacion_pob_e_sp.html",
+    poblacion_ef_con:  "plots/poblacion_pob_e_cp.html"
   };
   document.getElementById('selPob').addEventListener('change', e=>{
     document.getElementById('iframePob').src = mapPob[e.target.value];
