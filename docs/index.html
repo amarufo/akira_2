@@ -82,23 +82,37 @@
         <option value="poblacion_ef_con">Población efectiva con proyecto</option>
       </select>
       <iframe id="iframePob" src="plots/poblacion_total.html" class="h25 w-100"></iframe>
-
-      <div class="d-flex flex-column gap-1 mt-2">
-        <iframe src="plots/donut_diseno.html"  class="h17 w-100"></iframe>
-        <iframe src="plots/donut_actual.html"  class="h17 w-100"></iframe>
-        <iframe src="plots/donut_optimo.html"  class="h17 w-100"></iframe>
-        <iframe src="plots/donut_final.html"   class="h17 w-100"></iframe>
-      </div>
+    </div>
+    <div class="col-lg-4">
+      <img id="fotoOferta" src="assets/oferta1.png" class="img-fluid border mb-1" style="height:33vh; object-fit:contain;">
+      <button id="btnNext" class="btn btn-dark w-100 btn-sm mb-3">Siguiente foto</button>
+      <iframe src="assets/isochrone_map.html" class="h33 w-100"></iframe>
     </div>
 
     <!-- 3) COLUMNA DERECHA (foto + mapa) -->
     <div class="col-lg-4">
       <img id="fotoOferta" src="assets/oferta1.png" class="img-fluid border mb-1" style="height:33vh; object-fit:contain;">
       <button id="btnNext" class="btn btn-dark w-100 btn-sm mb-3">Siguiente foto</button>
-
       <iframe src="assets/isochrone_map.html" class="h33 w-100"></iframe>
     </div>
   </div>
+
+  <!-- FILA DE DONAS (horizontal) -->
+<div class="row justify-content-center my-3">
+  <div class="col-6 col-md-3 mb-2">
+    <iframe src="plots/donut_diseno.html"  class="h17 w-100"></iframe>
+  </div>
+  <div class="col-6 col-md-3 mb-2">
+    <iframe src="plots/donut_actual.html"  class="h17 w-100"></iframe>
+  </div>
+  <div class="col-6 col-md-3 mb-2">
+    <iframe src="plots/donut_optimo.html"  class="h17 w-100"></iframe>
+  </div>
+  <div class="col-6 col-md-3 mb-2">
+    <iframe src="plots/donut_final.html"   class="h17 w-100"></iframe>
+  </div>
+</div>
+
 
   <!-- 4) FILA BRECHA -->
   <div class="row mt-4">
