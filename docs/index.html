@@ -1,187 +1,193 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Dashboard Estático - Inversión Educativa</title>
-  <style>
-    body { margin: 0; font-family: Arial, sans-serif; }
-    header { background: black; color: white; padding: 0.5rem; text-align: center; font-weight: bold; font-size: 1vw; }
-    nav { display: flex; background: #eee; }
-    nav button {
-      flex: 1;
-      padding: 0.75rem;
-      border: none;
-      background: #ddd;
-      cursor: pointer;
-      font-size: 0.9vw;
-    }
-    nav button.active { background: white; font-weight: bold; }
-    .tab { display: none; padding: 1rem; }
-    .tab.active { display: block; }
+<meta charset="utf-8">
+<title>Dashboard Educativo — Versión estática</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    /* Layout de Presentación General */
-    .flex-row { display: flex; width: 100%; box-sizing: border-box; }
-    .col { padding: 0.5rem; box-sizing: border-box; }
-    .col-33 { width: 33%; }
-    .col-32 { width: 32%; }
-    .col-35 { width: 35%; }
-    .box { border: 1px solid #000; margin-bottom: 1rem; }
-    .header-cell { background: #507294; color: black; text-align: center; font-weight: bold; padding: 0.3rem; font-size: 0.7vw; }
-    .body-cell { background: #faec4e; padding: 0.3rem; font-size: 0.7vw; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.63vw; }
-    td, th { border: 1px solid #ccc; padding: 0.2rem; }
-    iframe { width: 100%; border: none; }
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    /* Tamaños de iframes para gráficos */
-    .chart-small { height: 25vh; }
-    .chart-med   { height: 33vh; }
-    .chart-large { height: 60vh; }
-
-    /* Botón carrusel */
-    #btn-cambiar { width: 100%; padding: 0.5rem; background: black; color: white; border: none; cursor: pointer; font-size: 0.8vw; margin-top: 0.5rem; }
-  </style>
+<style>
+  body            { font-family: Arial, sans-serif; }
+  header          { background:#000; color:#fff; padding:.6rem 1rem; text-align:center; font-weight:bold; }
+  .info-box       { border:1px solid #000; padding:.6rem; margin-bottom:1rem; }
+  .table-sm td,
+  .table-sm th    { font-size:.66vw; padding:.2rem .3rem; }
+  .donuts iframe  { height:17vh; border:none; }
+  .chart-25       { height:24vh; border:none; }
+  .chart-33       { height:33vh; border:none; }
+  .chart-60       { height:60vh; border:none; }
+  .chart-full     { height:90vh; border:none; }
+  select          { font-size:.9rem; }
+  #nav a          { cursor:pointer; }
+</style>
 </head>
 <body>
 
-  <header>DASHBOARD DE CÁLCULO DE LA OFERTA, DEMANDA Y BRECHAS DE UN PROYECTO DE INVERSIÓN</header>
+<header id="top">DASHBOARD DE CÁLCULO DE LA OFERTA, DEMANDA Y BRECHAS DE UN PROYECTO DE INVERSIÓN</header>
 
-  <nav>
-    <button id="tab-btn-1" class="active">Presentación General</button>
-    <button id="tab-btn-2">Monte Carlo</button>
-  </nav>
-
-  <!-- PESTAÑA 1 -->
-  <div id="tab-1" class="tab active">
-    <div class="flex-row">
-      
-      <!-- COLUMNA 1 -->
-      <div class="col col-33">
-        <!-- Datos iniciales -->
-        <div class="box">
-          <div class="header-cell">CURSO</div>
-          <div class="body-cell">Taller de proyectos II - Maestría en Sc. Proyectos de Inversión</div>
-          <div class="header-cell">Integrantes</div>
-          <div class="body-cell">Wilbert Amaru Fernandez Olmedo</div>
-          <div class="body-cell">Steven Cristian Rodas Tenazoa</div>
-          <div class="body-cell">Cesar Fernando Blas Neyra</div>
-          <div class="header-cell">Datos iniciales</div>
-          <div class="body-cell">Nombre de la I.E. secundaria: Akira Kato</div>
-          <div class="body-cell">Ubicación: Lima - Lima - Ate</div>
-          <div class="body-cell">Fuente de información: BD personal - INEI - SIADEG</div>
-          <div class="header-cell">Unidad de servicio</div>
-          <div class="body-cell">Estudiantes atendidos anualmente en condiciones estándar de servicio</div>
-          <div class="body-cell">MINEDU: Servicio de Educación Secundaria</div>
-          <div class="header-cell">Brechas</div>
-          <div class="body-cell">Estudiantes no atendidos anualmente en condiciones estándar de servicio</div>
-          <div class="body-cell">Cobertura: % no matriculados vs. demanda potencial</div>
-          <div class="body-cell">Calidad: % de locales con capacidad inadecuada</div>
-        </div>
-
-        <!-- Tabla de AI y colegio -->
-        <div class="box">
-          <table>
-            <tr><th colspan="2">Sobre el Área de influencia</th></tr>
-            <tr><td class="body-cell">Área del AI</td><td>10.589 km²</td></tr>
-            <tr><td class="body-cell">Cantidad de colegios públicos y privados</td><td>37</td></tr>
-            <tr><td class="body-cell">Privados</td><td>33</td></tr>
-            <tr><td class="body-cell">Públicos</td><td>4</td></tr>
-            <tr><td class="body-cell">Estudiantes AI</td><td>6 867</td></tr>
-            <tr><td class="body-cell">Estudiantes en públicos</td><td>3 190</td></tr>
-            <tr><th colspan="2">Datos de la I.E.</th></tr>
-            <tr><td class="body-cell">Estudiantes 2024</td><td>671</td></tr>
-            <tr><td class="body-cell">Docentes 2024</td><td>34</td></tr>
-            <tr><td class="body-cell">Directivos 2024</td><td>2</td></tr>
-            <tr><td class="body-cell">Secciones totales</td><td>21</td></tr>
-            <tr><td class="body-cell">Turnos</td><td>2</td></tr>
-            <tr><td class="body-cell">Aulas totales</td><td>11</td></tr>
-            <tr><td class="body-cell">Cap. de aulas*</td><td>30</td></tr>
-            <tr><th colspan="2">Diagnóstico</th></tr>
-            <tr><td class="body-cell">Aulas según norma</td><td>3</td></tr>
-            <tr><td class="body-cell">Aulas en buen/regular</td><td>3</td></tr>
-            <tr><td class="body-cell">Aulas nuevas proyecto</td><td>20</td></tr>
-            <tr><td class="body-cell">Per. preinversión</td><td>2025</td></tr>
-            <tr><td class="body-cell">Exp. Técnico</td><td>2026</td></tr>
-            <tr><td class="body-cell">Ejecución física</td><td>2027–28</td></tr>
-            <tr><td class="body-cell">Inicio funcionamiento</td><td>2029</td></tr>
-            <tr><td class="body-cell">% en públicas</td><td>46.45%</td></tr>
-            <tr><td class="body-cell">% en Akira Kato/públicas</td><td>21.72%</td></tr>
-            <tr><td class="body-cell">% en Akira Kato/total</td><td>10.09%</td></tr>
-          </table>
-        </div>
-      </div>
-
-      <!-- COLUMNA 2 -->
-      <div class="col col-32">
-        <iframe src="assets/4.jpg" class="chart-large"></iframe>
-        <iframe src="assets/isochrone_map.html" class="chart-large"></iframe>
-      </div>
-
-      <!-- COLUMNA 3 -->
-      <div class="col col-35">
-        <!-- Dropdown simulado -->
-        <select id="dropdown_poblacion" style="width:100%; padding:0.5rem; font-size:0.9rem; margin-bottom:0.5rem;">
-          <option value="POB_TOTAL">Población total</option>
-          <option value="POB_REF">Población referencial</option>
-          <option value="POB_POTE">Población potencial</option>
-          <option value="POB_E_SP">Efectiva sin proyecto</option>
-          <option value="POB_E_CP">Efectiva con proyecto</option>
-        </select>
-
-        <!-- Gráfico población -->
-        <iframe id="iframe_pob" src="grafico_poblacion_total.html" class="chart-small"></iframe>
-
-        <!-- Carrusel de oferta -->
-        <button id="btn-cambiar">Galería de fotos – Oferta</button>
-        <iframe id="iframe_carrusel2" src="assets/oferta1.png" class="chart-med"></iframe>
-
-        <!-- Brecha -->
-        <div class="header-cell" style="font-size:0.8vw; margin-top:0.5rem;">Evolución de la brecha</div>
-        <iframe src="grafico_brecha.html" class="chart-large"></iframe>
-      </div>
-
+<!-- Barra de navegación ancla -->
+<nav id="nav" class="navbar navbar-expand-sm bg-light sticky-top shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#top">Inicio</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="#general">Presentación General</a></li>
+        <li class="nav-item"><a class="nav-link" href="#montecarlo">Monte Carlo</a></li>
+      </ul>
     </div>
   </div>
+</nav>
 
-  <!-- PESTAÑA 2: MONTECARLO -->
-  <div id="tab-2" class="tab">
-    <iframe src="grafico_montecarlo.html" style="width:100%; height:100vh;"></iframe>
+<!-- =============== SECCIÓN GENERAL =============== -->
+<section id="general" class="container-fluid mt-3">
+  <div class="row">
+    <!-- COLUMNA IZQUIERDA (info) -->
+    <div class="col-lg-4">
+      <!-- Datos iniciales -->
+      <div class="info-box">
+        <h6 class="bg-dark text-white text-center py-1 mb-2">CURSO</h6>
+        <p class="bg-secondary text-white text-center mb-2" style="font-size:.8vw;">
+          Taller de proyectos II — Maestría en Sc. Proyectos de Inversión
+        </p>
+        <h6 class="bg-dark text-white text-center py-1 mb-1">Integrantes</h6>
+        <p class="mb-0">Wilbert Amaru Fernandez Olmedo</p>
+        <p class="mb-0">Steven Cristian Rodas Tenazoa</p>
+        <p>Cesar Fernando Blas Neyra</p>
+
+        <h6 class="bg-dark text-white text-center py-1 mb-1">Datos iniciales</h6>
+        <p class="mb-1">I.E. secundaria: <b>Akira Kato</b></p>
+        <p class="mb-1">Ubicación: <b>Lima – Ate</b></p>
+        <p>Fuentes: BD personal, INEI, SIADEG</p>
+
+        <h6 class="bg-dark text-white text-center py-1 mb-1">Unidad de servicio</h6>
+        <p class="mb-1">Estudiantes atendidos anualmente</p>
+        <p>MINEDU — Servicio de Educación Secundaria</p>
+
+        <h6 class="bg-dark text-white text-center py-1 mb-1">Brechas</h6>
+        <p class="mb-1">Cobertura: % no matriculados vs. demanda potencial</p>
+        <p class="mb-0">Calidad: % de locales con capacidad inadecuada</p>
+      </div>
+
+      <!-- Tabla AI / I.E. (versión simplificada) -->
+      <div class="info-box">
+        <table class="table table-bordered table-sm mb-0">
+          <thead class="table-primary text-center">
+            <tr><th colspan="2">Área de influencia</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>A.I. (km²)</td><td>10 589</td></tr>
+            <tr><td>Colegios (pub+priv)</td><td>37</td></tr>
+            <tr><td>Privados</td><td>33</td></tr>
+            <tr><td>Públicos</td><td>4</td></tr>
+            <tr><td>Estudiantes A.I.</td><td>6 867</td></tr>
+            <tr><td>Estudiantes en públicos</td><td>3 190</td></tr>
+          </tbody>
+          <thead class="table-primary text-center">
+            <tr><th colspan="2">Datos de la I.E.</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Estudiantes (2024)</td><td>671</td></tr>
+            <tr><td>Docentes (2024)</td><td>34</td></tr>
+            <tr><td>Directivos (2024)</td><td>2</td></tr>
+            <tr><td>Secciones</td><td>21</td></tr>
+            <tr><td>Turnos</td><td>2</td></tr>
+            <tr><td>Aulas totales</td><td>11</td></tr>
+            <tr><td>Cap. aula</td><td>30</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA (gráficos / imágenes) -->
+    <div class="col-lg-8">
+      <!-- primera fila -->
+      <div class="row">
+        <div class="col-md-7">
+          <!-- Selector & gráfico población -->
+          <select id="selPob" class="form-select mb-2">
+            <option value="poblacion_total">Población total</option>
+            <option value="poblacion_ref">Población demandada referencial</option>
+            <option value="poblacion_pot">Población demandada potencial</option>
+            <option value="poblacion_ef_sin">Población efectiva sin proyecto</option>
+            <option value="poblacion_ef_con">Población efectiva con proyecto</option>
+          </select>
+          <iframe id="iframePob" src="plots/poblacion_total.html" class="chart-25 w-100"></iframe>
+        </div>
+        <div class="col-md-5 donuts d-flex flex-column gap-1">
+          <iframe src="plots/donut_diseno.html"></iframe>
+          <iframe src="plots/donut_actual.html"></iframe>
+          <iframe src="plots/donut_optimo.html"></iframe>
+          <iframe src="plots/donut_final.html"></iframe>
+        </div>
+      </div>
+
+      <!-- segunda fila -->
+      <div class="row mt-2">
+        <div class="col-md-6">
+          <!-- carrusel sencillo -->
+          <img id="fotoOferta" src="assets/oferta1.png" class="img-fluid border" style="height:33vh; object-fit:contain;">
+          <button id="btnNext" class="btn btn-dark w-100 btn-sm mt-1">Siguiente foto</button>
+        </div>
+        <div class="col-md-6">
+          <!-- mapa isócrona -->
+          <iframe src="assets/isochrone_map.html" class="chart-33 w-100"></iframe>
+        </div>
+      </div>
+
+      <!-- tercera fila -->
+      <div class="row mt-2">
+        <div class="col-12">
+          <h6 class="bg-dark text-white text-center py-1 mb-1">Evolución de la brecha</h6>
+          <iframe src="plots/brecha.html" class="chart-60 w-100"></iframe>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <script>
-    // Manejo de pestañas
-    document.querySelectorAll('nav button').forEach((btn, i) => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-        document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-        btn.classList.add('active');
-        document.getElementById('tab-'+(i+1)).classList.add('active');
-      });
-    });
+<!-- =============== MONTECARLO =============== -->
+<section id="montecarlo" class="container-fluid mt-4">
+  <h4 class="text-center fw-bold mb-2">Simulación Monte Carlo de Demanda</h4>
+  <iframe src="plots/montecarlo.html" class="chart-full w-100"></iframe>
+</section>
 
-    // Simular dropdown + cambio de gráfico
-    const mapping = {
-      'POB_TOTAL': 'grafico_poblacion_total.html',
-      'POB_REF':   'grafico_poblacion_ref.html',
-      'POB_POTE':  'grafico_poblacion_potencial.html',
-      'POB_E_SP':  'grafico_poblacion_ef_sin.html',
-      'POB_E_CP':  'grafico_poblacion_ef_con.html'
-    };
-    document.getElementById('dropdown_poblacion').addEventListener('change', e => {
-      document.getElementById('iframe_pob').src = mapping[e.target.value];
-    });
+<!-- JS para selector, carrusel y desplazamiento suave -->
+<script>
+  // --- cambia gráfico de población ---
+  const mapPob = {
+    poblacion_total:   "plots/poblacion_total.html",
+    poblacion_ref:     "plots/poblacion_ref.html",
+    poblacion_pot:     "plots/poblacion_pot.html",
+    poblacion_ef_sin:  "plots/poblacion_ef_sin.html",
+    poblacion_ef_con:  "plots/poblacion_ef_con.html"
+  };
+  document.getElementById('selPob').addEventListener('change', e=>{
+    document.getElementById('iframePob').src = mapPob[e.target.value];
+  });
 
-    // Carrusel de imágenes
-    const ofertas = [
-      'assets/pf1.jpg','assets/pf2.jpg','assets/pf3.jpg','assets/pf4.jpg',
-      'assets/pf5.jpg','assets/pf6.jpg','assets/pf7.jpg','assets/pf8.jpg',
-      'assets/oferta1.png','assets/oferta2.png'
-    ];
-    let idx = 0;
-    document.getElementById('btn-cambiar').addEventListener('click', () => {
-      idx = (idx + 1) % ofertas.length;
-      document.getElementById('iframe_carrusel2').src = ofertas[idx];
+  // --- carrusel de fotos oferta ---
+  const fotos = [
+    "assets/pf1.jpg","assets/pf2.jpg","assets/pf3.jpg","assets/pf4.jpg",
+    "assets/pf5.jpg","assets/pf6.jpg","assets/pf7.jpg","assets/pf8.jpg",
+    "assets/oferta1.png","assets/oferta2.png"
+  ];
+  let idx = 0;
+  document.getElementById('btnNext').addEventListener('click', ()=>{
+    idx = (idx+1)%fotos.length;
+    document.getElementById('fotoOferta').src = fotos[idx];
+  });
+
+  // --- desplazamiento suave (opcional) ---
+  document.querySelectorAll('#nav a').forEach(a=>{
+    a.addEventListener('click', ev=>{
+      ev.preventDefault();
+      document.querySelector(ev.target.getAttribute('href'))
+              .scrollIntoView({behavior:'smooth'});
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>
